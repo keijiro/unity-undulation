@@ -8,12 +8,15 @@ public class FloorController : MonoBehaviour
     public GameObject panelPrefab;
     public int column = 10;
     public int row = 20;
+	public float speed = 5.0f;
 
     #endregion
 
     #region Private members
 
     GameObject[] panels;
+	float scroll;
+	int toWrap;
 
     #endregion
 
@@ -32,15 +35,37 @@ public class FloorController : MonoBehaviour
                 panels[r * column + c] = go;
             }
         }
+
+		toWrap = column * (row - 1);
     }
     
     void Update ()
     {
-		var offset = Vector3.up * Time.time * 0.43f + Vector3.forward * Time.time * 0.79f;
+		speed = Time.time;
+
+		var slide = Vector3.forward * speed * Time.deltaTime;
+		scroll += speed * Time.deltaTime;
+
+		var offset = Vector3.up * Time.time * 0.83f + Vector3.forward * Time.time * 0.79f;
+
         for (var i = 0; i < panels.Length; i++)
         {
-			var angle = -60.0f * (Perlin.Noise(panels[i].transform.position * 0.19f + offset));
+			var angle = -80.0f * (Perlin.Noise(panels[i].transform.position * 0.19f + offset));
             panels[i].transform.localRotation = Quaternion.AngleAxis(angle, Vector3.right);
-        }
-    }
+			panels[i].transform.localPosition += slide;
+		}
+
+		while (scroll > 1.0f)
+		{
+			for (var i = 0; i < column; i++)
+			{
+				panels[toWrap + i].transform.localPosition -= Vector3.forward * row;
+			}
+
+			toWrap -= column;
+			if (toWrap < 0) toWrap += row * column;
+
+			scroll -= 1.0f;
+		}
+	}
 }
