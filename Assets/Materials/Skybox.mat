@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Skybox
-  m_Shader: {fileID: 4800000, guid: e3f7fee8d939d42f1b03c0de98293ec1, type: 3}
+  m_Shader: {fileID: 4800000, guid: 68f5d531d78d14f68a74e65f25ed2a56, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -37,7 +37,7 @@ Material:
       data:
         first:
           name: _Color1
-        second: {r: .661764741, g: .659482777, b: .579044163, a: 0}
+        second: {r: .662745118, g: .65882355, b: .580392182, a: 0}
       data:
         first:
           name: _Color2
@@ -45,7 +45,7 @@ Material:
       data:
         first:
           name: _Color3
-        second: {r: 1, g: 1, b: 1, a: 0}
+        second: {r: .191176474, g: .184147924, b: .184147924, a: 0}
       data:
         first:
           name: _UpVector
