@@ -7,8 +7,7 @@ public class RoadMaker : MonoBehaviour
 
     public GameObject panelPrefab;
     public int columnCount = 15;
-    public float twistAmount = 90.0f;
-    public float twistFreq = 0.3f;
+    public Shaker twist;
 
     #endregion
 
@@ -38,8 +37,8 @@ public class RoadMaker : MonoBehaviour
 
     void Update ()
     {
-        var twist = Perlin.Noise (Scroller.instance.position * twistFreq) * twistAmount;
-        transform.localRotation = Quaternion.AngleAxis (twist, Vector3.forward);
+        twist.Update (Scroller.instance.delta);
+        transform.localRotation = Quaternion.AngleAxis (twist.Scalar, Vector3.forward);
 
         scroll += Scroller.instance.delta;
         while (scroll > 1.0f)

@@ -165,8 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelPrefab: {fileID: 100000, guid: 120228459a7ca45febaa3f8a6d5f364a, type: 2}
   columnCount: 16
-  twistAmount: 75
-  twistFreq: .0199999996
+  twist:
+    frequency: .0500000007
+    amount: 90
+    octave: 1
 --- !u!4 &78701137
 Transform:
   m_ObjectHideFlags: 0
@@ -3017,11 +3019,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position:
     frequency: .5
-    amount: 4
+    amount: 2
     octave: 1
   rotation:
     frequency: .340000004
-    amount: 35
+    amount: 30
     octave: 3
 --- !u!114 &1993789259
 MonoBehaviour:

@@ -21,13 +21,20 @@ public class Shaker
 
     #region Public properties
 
+    public float Scalar {
+        get {
+            ResetIfNeed ();
+            return Perlin.Fbm (vectors [0] * time, octave) * amount * 2;
+        }
+    }
+
     public Vector3 Position {
         get {
             ResetIfNeed ();
             return new Vector3 (
                 Perlin.Fbm (vectors [0] * time, octave),
                 Perlin.Fbm (vectors [1] * time, octave),
-                Perlin.Fbm (vectors [2] * time, octave)) * amount;
+                Perlin.Fbm (vectors [2] * time, octave)) * (amount * 2);
         }
     }
 
@@ -35,8 +42,8 @@ public class Shaker
         get {
             ResetIfNeed ();
             return
-                Quaternion.AngleAxis (Perlin.Fbm (vectors [0] * time, octave) * amount, Vector3.up) *
-                Quaternion.AngleAxis (Perlin.Fbm (vectors [1] * time, octave) * amount, Vector3.right);
+                Quaternion.AngleAxis (Perlin.Fbm (vectors [0] * time, octave) * amount * 2, Vector3.up) *
+                Quaternion.AngleAxis (Perlin.Fbm (vectors [1] * time, octave) * amount * 2, Vector3.right);
         }
     }
 
