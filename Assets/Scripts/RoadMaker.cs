@@ -7,7 +7,6 @@ public class RoadMaker : MonoBehaviour
 
     public GameObject panelPrefab;
     public int columnCount = 15;
-    public Shaker twist;
 
     #endregion
 
@@ -37,9 +36,6 @@ public class RoadMaker : MonoBehaviour
 
     void Update ()
     {
-        twist.Update (Scroller.instance.delta);
-        transform.localRotation = Quaternion.AngleAxis (twist.Scalar, Vector3.forward);
-
         scroll += Scroller.instance.delta;
         while (scroll > 1.0f)
         {
