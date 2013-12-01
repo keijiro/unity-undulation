@@ -125,8 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d4a2c5b2d524599b62ced1b5f38cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionFrequency: .5
-  positionAmount: 8
+  position:
+    frequency: .200000003
+    amount: 6
+    octave: 3
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

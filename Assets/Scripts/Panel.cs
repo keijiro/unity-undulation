@@ -24,8 +24,7 @@ public class Panel : MonoBehaviour
 
     void Update ()
     {
-        var slide = RoadMaker.instance.speed * Time.deltaTime;
-        transform.position -= Vector3.forward * slide;
+        transform.position -= Vector3.forward * Scroller.instance.delta;
 
         if (transform.position.z < zLimit)
             Destroy(gameObject);

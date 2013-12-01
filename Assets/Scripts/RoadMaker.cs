@@ -3,21 +3,16 @@ using System.Collections;
 
 public class RoadMaker : MonoBehaviour
 {
-    #region Static attribute
-
-    static public RoadMaker instance;
-
-    #endregion
-
     #region Public properties
 
     public GameObject panelPrefab;
     public int columnCount = 15;
-    public float speed = 5.0f;
+    public float twistAmount = 90.0f;
+    public float twistFreq = 0.3f;
 
     #endregion
 
-    #region Private members
+    #region Private variables
 
     float scroll;
 
@@ -27,11 +22,12 @@ public class RoadMaker : MonoBehaviour
 
     void CreateRow (float offset)
     {
+        var origin = transform.position - transform.forward * offset;
+        var dx = transform.right;
+
         for (var column = 0; column < columnCount; column++)
         {
-            var position = transform.position +
-                transform.right * (column - 0.5f * columnCount) -
-                transform.forward * offset;
+            var position = origin + dx * (column - 0.5f * (columnCount - 1));
             Instantiate (panelPrefab, position, transform.rotation);
         }
     }
@@ -40,17 +36,12 @@ public class RoadMaker : MonoBehaviour
 
     #region Monobehaviour functions
 
-    void Awake ()
-    {
-        instance = this;
-    }
-
     void Update ()
     {
-        transform.localRotation = Quaternion.AngleAxis(Perlin.Noise (Time.time * 0.3f) * 90.0f + 20.0f, Vector3.forward);
+        var twist = Perlin.Noise (Scroller.instance.position * twistFreq) * twistAmount;
+        transform.localRotation = Quaternion.AngleAxis (twist, Vector3.forward);
 
-        scroll += speed * Time.deltaTime;
-
+        scroll += Scroller.instance.delta;
         while (scroll > 1.0f)
         {
             CreateRow (scroll);

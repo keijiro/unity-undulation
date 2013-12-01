@@ -16,7 +16,7 @@ public class ParticleController : MonoBehaviour
     
     void Update ()
     {
-        var currentSpeed = RoadMaker.instance.speed;
+        var currentSpeed = Scroller.instance.speed;
         var ratio = currentSpeed / startSpeed;
         var speed = startSpeed * ratio;
 
